@@ -12,9 +12,28 @@ import ComposableArchitecture
 struct TcaTutorialApp: App {
     var body: some Scene {
         WindowGroup {
-            CounterView(
-                store: Store(initialState: CounterFeature.State(), reducer: CounterFeature())
-            )
+            TabView {
+                CounterView(
+                    store: Store(
+                        initialState: CounterFeature.State(),
+                        reducer: CounterFeature()
+                    )
+                )
+                .tabItem {
+                    Image(systemName: "number")
+                    Text("Counter")
+                }
+                ContactsView(
+                    store: Store(
+                        initialState: ContactsFeature.State(),
+                        reducer: ContactsFeature()
+                    )
+                )
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                    Text("Contacts")
+                }
+            }
         }
     }
 }
